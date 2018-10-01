@@ -9,19 +9,11 @@
 import Foundation
 import UIKit
 
-struct Meme {
-    var topText: String
-    var bottomText: String
-    var originalImage: UIImage
-    var memedImage: UIImage
-    
-}
-
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate  {
 
     @IBOutlet weak var imagePickerView: UIImageView!
-    @IBOutlet weak var AlbumPhoto: UIBarButtonItem!
-    @IBOutlet weak var Cam: UIBarButtonItem!
+    @IBOutlet weak var albumPhoto: UIBarButtonItem!
+    @IBOutlet weak var cam: UIBarButtonItem!
     @IBOutlet weak var textTop: UITextField!
     @IBOutlet weak var textBottom: UITextField!
     @IBOutlet weak var toolbar: UIToolbar!
@@ -32,13 +24,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         loadText(textTop, "TOP TEXT")
         loadText(textBottom, "BOTTOM TEXT")
-//      shareButton.isEnabled = false
+        shareButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        Cam.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-         subscribeToKeyboardNotifications()
+        cam.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        subscribeToKeyboardNotifications()
         shareButton.isEnabled = imagePickerView.image != nil
     }
     
@@ -83,17 +75,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func pickerAnImage(_ sender: Any) {
-         let pickerController = UIImagePickerController()
-         pickerController.delegate = self
-        pickerController.sourceType = .photoLibrary
-        
-        present(pickerController, animated: true, completion: nil)
+        presentImagePickerWith(.photoLibrary)
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any){
+        presentImagePickerWith(.camera)
+    }
+    
+    func presentImagePickerWith(_ sourceType: UIImagePickerControllerSourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = .camera
+        imagePicker.sourceType = sourceType
         
         present(imagePicker, animated: true, completion: nil)
     }
@@ -135,11 +127,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func save() {
-        _ = Meme(topText: textTop.text!, bottomText: textBottom.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
+        let meme = Meme(topText: textTop.text!, bottomText: textBottom.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
+
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)        
     }
     
     func generateMemedImage() -> UIImage {
-//        showNavToolBar(true)
+        showNavToolBar(true)
         self.navigationController?.navigationBar.isHidden = true
         self.toolbar.isHidden = true
         
@@ -148,8 +144,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        self.navigationBar.isHidden = false
-        self.toolbar.isHidden = false
+        showNavToolBar(false)
         
         return memedImage
     }
@@ -161,6 +156,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             items, error in if didComplete {
                 self.save()
                 self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
             }
         }
         present(activityViewController, animated: true, completion: nil)
@@ -171,11 +167,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         loadText(textBottom, "BOTTOM TEXT")
         shareButton.isEnabled = false
         imagePickerView.image = nil
+        dismiss(animated: true, completion: nil)
     }
-    //    func showNavToolBar(_ x: Bool){
-//        self.navigationController?.navigationBar.isHidden = x
-//        self.toolbar.isHidden = x
-//    }
+    
+    func showNavToolBar(_ x: Bool){
+        self.navigationBar.isHidden = x
+        self.toolbar.isHidden = x
+    }
     
 }
 
