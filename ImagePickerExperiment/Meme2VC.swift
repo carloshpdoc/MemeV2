@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Meme2: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class Meme2VC: UIViewController, UITableViewDataSource, UITableViewDelegate {
    
     @IBOutlet var sentMemesTableView: UITableView!
     var memes: [Meme]!
@@ -47,9 +47,10 @@ class Meme2: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            memes?.remove(at: indexPath.row)
+            memes.remove(at: indexPath.row)
+            MemeManager.removeMeme(atIndex: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

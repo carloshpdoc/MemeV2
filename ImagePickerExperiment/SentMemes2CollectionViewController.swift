@@ -15,18 +15,32 @@ class SentMemes2CollectionViewController: UICollectionViewController  {
 
     var memes: [Meme]!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let space: CGFloat = 5.0
-        let width = (view.frame.size.width - (2 * space)) / 3.0
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let space: CGFloat
+        let dimension: CGFloat
+        
+        if (UIDevice.current.orientation.isPortrait) {
+            space = 3.0
+            dimension = (view.frame.size.width - (2 * space)) / 3
+        } else {
+            space = 1.0
+            dimension = (view.frame.size.width - (1 * space)) / 5
+        }
+        
+        let width = dimension
         let heigth = (view.frame.size.width - (2 * space)) / 3.0
         flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = space
         flowLayout.itemSize = CGSize(width: width, height: heigth)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
 

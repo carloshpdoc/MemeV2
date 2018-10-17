@@ -20,7 +20,7 @@ class MemeDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: #selector(MemeDetailViewController.startEditor))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.edit, target: self, action: #selector(MemeDetailViewController.startEditor))
         memeImageView.image = memes.memedImage
         self.tabBarController?.tabBar.isHidden = true
         
@@ -32,7 +32,7 @@ class MemeDetailViewController: UIViewController {
     }
     
     @objc func startEditor() {
-        let startMeme = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        let startMeme = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! CreateMemeVC
         
         self.present(startMeme, animated: true, completion: nil)
         
