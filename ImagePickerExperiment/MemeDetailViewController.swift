@@ -32,7 +32,7 @@ class MemeDetailViewController: UIViewController {
     }
     
     @objc func startEditor() {
-        let startMeme = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        let startMeme = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! CreateMemeVC
         
         self.present(startMeme, animated: true, completion: nil)
         

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Meme2: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class Meme2VC: UIViewController, UITableViewDataSource, UITableViewDelegate {
    
     @IBOutlet var sentMemesTableView: UITableView!
     var memes: [Meme]!

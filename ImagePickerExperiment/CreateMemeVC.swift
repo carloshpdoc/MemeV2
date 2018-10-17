@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate  {
+class CreateMemeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate  {
 
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var albumPhoto: UIBarButtonItem!
@@ -63,9 +63,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.text == "TOP TEXT" || textField.text == "BOTTOM TEXT" {
-            textField.text = ""
-        }
         
         if textField == textBottom {
             subscribeToKeyboardNotifications()
@@ -170,9 +167,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true, completion: nil)
     }
     
-    func showNavToolBar(_ x: Bool){
-        self.navigationBar.isHidden = x
-        self.toolbar.isHidden = x
+    func showNavToolBar(_ hide: Bool){
+        self.navigationBar.isHidden = hide
+        self.toolbar.isHidden = hide
     }
     
 }

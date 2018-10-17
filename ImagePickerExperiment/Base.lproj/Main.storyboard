@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="impact.ttf">
+        <array key="Impacted.ttf">
             <string>Impact</string>
         </array>
     </customFonts>
@@ -137,7 +137,7 @@
         <!--Meme2TableView-->
         <scene sceneID="Wut-bO-c5w">
             <objects>
-                <viewController storyboardIdentifier="Meme2" title="Meme2TableView" id="xZf-qK-5xS" customClass="Meme2" customModule="ImagePickerExperiment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Meme2" title="Meme2TableView" id="xZf-qK-5xS" customClass="Meme2VC" customModule="ImagePickerExperiment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zb5-6n-HbD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -190,10 +190,10 @@
             </objects>
             <point key="canvasLocation" x="-470.625" y="378.16901408450707"/>
         </scene>
-        <!--View Controller-->
+        <!--Create MemeVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="ImagePickerExperiment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="CreateMemeVC" customModule="ImagePickerExperiment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -219,11 +219,10 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xM1-7M-TIF">
                                 <rect key="frame" x="0.0" y="72" width="320" height="452"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9ld-H2-4ji" userLabel="textTop">
-                                <rect key="frame" x="111.5" y="91" width="97" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TOP TEXT" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9ld-H2-4ji" userLabel="textTop">
+                                <rect key="frame" x="16" y="91" width="288" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="itZ-UM-QrV"/>
-                                    <constraint firstAttribute="width" constant="97" id="xlg-Ic-WLp"/>
+                                    <constraint firstAttribute="height" constant="35" id="itZ-UM-QrV"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="28"/>
@@ -249,11 +248,10 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dF7-kc-pas" userLabel="textBottom">
-                                <rect key="frame" x="111.5" y="454" width="97" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM TEXT" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dF7-kc-pas" userLabel="textBottom">
+                                <rect key="frame" x="16" y="449" width="288" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Vi3-5y-3jS"/>
-                                    <constraint firstAttribute="width" constant="97" id="XRN-U6-lO3"/>
+                                    <constraint firstAttribute="height" constant="35" id="Vi3-5y-3jS"/>
                                 </constraints>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="28"/>
@@ -265,15 +263,21 @@
                             <constraint firstItem="Dib-kW-roA" firstAttribute="trailing" secondItem="xM1-7M-TIF" secondAttribute="trailing" id="8MC-XU-syl"/>
                             <constraint firstItem="Dib-kW-roA" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="9EQ-ci-e3N"/>
                             <constraint firstItem="ZzE-Mo-dNz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="E7J-SB-tE2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dF7-kc-pas" secondAttribute="trailing" constant="16" id="IIi-Tx-Fzd"/>
+                            <constraint firstItem="xM1-7M-TIF" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="KOc-u0-XYz"/>
                             <constraint firstItem="xM1-7M-TIF" firstAttribute="top" secondItem="ZzE-Mo-dNz" secondAttribute="bottom" id="OSG-Mi-Hx8"/>
                             <constraint firstItem="9ld-H2-4ji" firstAttribute="top" secondItem="ZzE-Mo-dNz" secondAttribute="bottom" constant="19" id="U1W-qQ-anI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9ld-H2-4ji" secondAttribute="trailing" constant="16" id="YMT-bA-lQg"/>
+                            <constraint firstItem="9ld-H2-4ji" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="YPG-ZG-slb"/>
                             <constraint firstItem="ZzE-Mo-dNz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZKd-jw-QzJ"/>
                             <constraint firstItem="Dib-kW-roA" firstAttribute="leading" secondItem="xM1-7M-TIF" secondAttribute="leading" id="fYe-bg-2YI"/>
                             <constraint firstItem="Dib-kW-roA" firstAttribute="top" secondItem="xM1-7M-TIF" secondAttribute="bottom" id="fbi-Hs-1vU"/>
                             <constraint firstItem="Dib-kW-roA" firstAttribute="centerX" secondItem="dF7-kc-pas" secondAttribute="centerX" id="hQs-VE-4f3"/>
                             <constraint firstItem="ZzE-Mo-dNz" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="kyL-5h-fjl"/>
+                            <constraint firstItem="xM1-7M-TIF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="lMF-88-KNn"/>
                             <constraint firstItem="Dib-kW-roA" firstAttribute="trailing" secondItem="ZzE-Mo-dNz" secondAttribute="trailing" id="nEq-fG-Ib1"/>
                             <constraint firstItem="Dib-kW-roA" firstAttribute="top" secondItem="dF7-kc-pas" secondAttribute="bottom" constant="40" id="nsS-gv-vUI"/>
+                            <constraint firstItem="dF7-kc-pas" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="qUh-VU-iy4"/>
                             <constraint firstItem="Dib-kW-roA" firstAttribute="centerX" secondItem="9ld-H2-4ji" secondAttribute="centerX" id="vhF-OC-lyy"/>
                             <constraint firstItem="Dib-kW-roA" firstAttribute="leading" secondItem="ZzE-Mo-dNz" secondAttribute="leading" id="wzn-vt-wNQ"/>
                         </constraints>
@@ -292,7 +296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="371" y="14"/>
+            <point key="canvasLocation" x="369.375" y="13.732394366197184"/>
         </scene>
         <!--MemeDetailViewController-->
         <scene sceneID="krX-nk-YbB">
